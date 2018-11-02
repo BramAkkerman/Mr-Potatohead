@@ -16,26 +16,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // If there is a saved state, set all images which were visible before visible again.
         if (savedInstanceState != null) {
             visibleImages = savedInstanceState.getStringArrayList("images");
             if (visibleImages.size() > 0) {
-                setPartsVisible(savedInstanceState.getStringArrayList("images"));
+                setPartsVisible();
             }
         }
     }
 
-    public void setPartsVisible(ArrayList<String> images) {
-        for (String imageText : images) {
+    // Set all the images visible in the list
+    public void setPartsVisible() {
+        for (String imageText : visibleImages) {
             ImageView image = checkChecked(imageText);
             image.setVisibility(image.VISIBLE);
         }
     }
 
+    // Save the list visibleImages in the state bundle
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState); // always call super
         outState.putStringArrayList("images", visibleImages);
     }
 
+    // Show the corresponding image if the checkbox is checked
     public void checkClicked(View v) {
         Log.d("potato","checkClicked: ");
         CheckBox checkbox = (CheckBox) v;
@@ -43,14 +47,17 @@ public class MainActivity extends AppCompatActivity {
         if(checkbox.isChecked()) {
             ImageView image = checkChecked(checkBoxText);
             image.setVisibility(image.VISIBLE);
+            // Add the name to the currently visible images
             visibleImages.add(checkBoxText);
         } else {
             ImageView image = checkChecked(checkBoxText);
             image.setVisibility(image.INVISIBLE);
+            // Remove the name from the currently visible images
             visibleImages.remove(checkBoxText);
         }
     }
 
+    // Switch case to handle the different image IDs
     private ImageView checkChecked(String checkBoxText) {
         ImageView image = (ImageView) findViewById(R.id.body);
         switch (checkBoxText) {
