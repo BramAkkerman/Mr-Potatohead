@@ -1,3 +1,3 @@
 # Mr-Potatohead
 
-![Mr-Potatohead_screenshot](https://raw.githubusercontent.com/BramAkkerman/Mr-Potatohead/blob/master/doc/Mr PotatoHead.png)
+![Mr-Potatohead_screenshot](https://github.com/BramAkkerman/Mr-Potatohead/blob/master/doc/Mr%20PotatoHead.png)
